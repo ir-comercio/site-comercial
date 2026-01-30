@@ -99,6 +99,18 @@ body {
 .nav-logo {
     display: flex;
     align-items: center;
+    gap: 15px;
+}
+
+.logo-image {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+    transform: scale(1.05);
 }
 
 .logo-text-animated {
@@ -945,6 +957,10 @@ body {
         font-size: 0.9rem;
     }
 
+    .logo-image {
+        height: 40px;
+    }
+
     .hero-title {
         font-size: 2.5rem;
     }
@@ -980,6 +996,14 @@ body {
 }
 
 @media (max-width: 480px) {
+    .logo-image {
+        height: 35px;
+    }
+
+    .logo-text-animated {
+        font-size: 0.75rem;
+    }
+
     .hero {
         padding: 120px 1rem 80px;
     }
