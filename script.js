@@ -208,24 +208,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const carouselTrack = document.getElementById('carouselTrack');
     
     if (carouselTrack) {
-        // Clone slides for infinite scroll
+        // Clone slides múltiplas vezes para scroll infinito suave
         const productSlides = Array.from(carouselTrack.children);
-        productSlides.forEach(slide => {
-            const clone = slide.cloneNode(true);
-            carouselTrack.appendChild(clone);
-        });
+        // Duplica 4 vezes para garantir loop perfeito
+        for (let i = 0; i < 4; i++) {
+            productSlides.forEach(slide => {
+                const clone = slide.cloneNode(true);
+                carouselTrack.appendChild(clone);
+            });
+        }
     }
 
     // Partners carousel infinite scroll
     const partnersCarousel = document.getElementById('partnersCarousel');
     
     if (partnersCarousel) {
-        // Clone slides for infinite scroll
+        // Clone slides múltiplas vezes para scroll infinito suave
         const partnerSlides = Array.from(partnersCarousel.children);
-        partnerSlides.forEach(slide => {
-            const clone = slide.cloneNode(true);
-            partnersCarousel.appendChild(clone);
-        });
+        // Duplica 4 vezes para garantir loop perfeito
+        for (let i = 0; i < 4; i++) {
+            partnerSlides.forEach(slide => {
+                const clone = slide.cloneNode(true);
+                partnersCarousel.appendChild(clone);
+            });
+        }
     }
 
     // Animate elements on scroll
