@@ -55,7 +55,7 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <p class="hero-label">Excelência em Materiais Elétricos</p>
+                <p class="hero-label">EXCELÊNCIA EM MATERIAIS ELÉTRICOS</p>
                 <h1 class="hero-title">
                     DISTRIBUIÇÃO COMPLETA DE 
                     <span class="highlight">MATERIAIS ELÉTRICOS</span>
@@ -64,36 +64,9 @@
                     Fornecemos soluções completas em materiais elétricos para o setor público e privado, 
                     com qualidade certificada e entregas em todo o território nacional.
                 </p>
-            </div>
-            <div class="hero-image">
-                <div class="image-carousel-container">
-                    <div class="carousel-nav prev" onclick="changeSlide(-1)">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="15 18 9 12 15 6"/>
-                        </svg>
-                    </div>
-                    
-                    <div class="carousel-slide active" onclick="openCatalog()">
-                        <img src="DISJUNTOR.png" alt="Disjuntor">
-                    </div>
-                    <div class="carousel-slide" onclick="openCatalog()">
-                        <img src="DISJUNTOR 10A.png" alt="Disjuntor 10A">
-                    </div>
-                    <div class="carousel-slide" onclick="openCatalog()">
-                        <img src="REFLETOR 100W.png" alt="Refletor 100W">
-                    </div>
-                    <div class="carousel-slide" onclick="openCatalog()">
-                        <img src="LAMPADA TUBULAR T8 18W.png" alt="Lâmpada Tubular T8 18W">
-                    </div>
-                    <div class="carousel-slide" onclick="openCatalog()">
-                        <img src="TERMINAL ELETRICO.png" alt="Terminal Elétrico">
-                    </div>
-                    
-                    <div class="carousel-nav next" onclick="changeSlide(1)">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="9 18 15 12 9 6"/>
-                        </svg>
-                    </div>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="openOrcamentoModal()">Fazer Orçamento</button>
+                    <a href="https://wa.me/5527998023083" target="_blank" class="btn-secondary">Falar no WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -102,6 +75,13 @@
     <!-- Features Section -->
     <section class="features">
         <div class="features-container">
+            <div class="section-header">
+                <h2 class="section-title">Portfólio completo em materiais elétricos.</h2>
+                <p class="section-description">
+                    Soluções integradas para projetos elétricos, manutenção industrial e infraestrutura.
+                </p>
+            </div>
+            <div class="features-grid">
             <div class="feature-card" onclick="window.location.href='#catalogo'">
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -157,10 +137,17 @@
                     </svg>
                 </div>
             </div>
+            
+            <div class="catalog-cta">
+                <a href="tel:+5527998023083" class="btn-primary" style="text-decoration: none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    Fale com o Comercial
+                </a>
+            </div>
         </div>
     </section>
-
-    <!-- Modal Orçamento -->
     <div id="orcamentoModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeOrcamentoModal()">&times;</span>
@@ -290,11 +277,13 @@
     <!-- Clients Section -->
     <section id="catalogo" class="catalog">
         <div class="catalog-container">
-            <h2 class="section-title">Nossos Clientes</h2>
-            <p class="section-description">
-                Mais de 500 instituições públicas e privadas confiam em nossos produtos e serviços. 
-                Atendemos prefeituras, órgãos federais, estaduais e municipais em todo o Brasil.
-            </p>
+            <div class="section-header">
+                <h2 class="section-title">Nossos Clientes</h2>
+                <p class="section-description">
+                    Mais de 500 instituições públicas e privadas confiam em nossos produtos e serviços. 
+                    Atendemos prefeituras, órgãos federais, estaduais e municipais em todo o Brasil.
+                </p>
+            </div>
             
             <div class="products-carousel">
                 <div class="carousel-track" id="carouselTrack">
@@ -356,7 +345,7 @@
                 </div>
             </div>
 
-            <div class="catalog-download">
+            <div class="catalog-cta">
                 <button class="btn-catalog" onclick="window.open('IR2 ESTOQUE/IR2-CATALOGO-2026.pdf', '_blank')">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -372,10 +361,10 @@
     <!-- Contact Section -->
     <section id="contato" class="contact">
         <div class="contact-container">
-            <div class="contact-header">
-                <h2 class="section-title">Entre em Contato</h2>
+            <div class="section-header">
+                <h2 class="section-title">Solicitar Orçamento</h2>
                 <p class="section-description">
-                    Preencha o formulário abaixo e nossa equipe entrará em contato o mais breve possível.
+                    Preencha o formulário e receba uma proposta personalizada em até 24 horas.
                 </p>
             </div>
 
