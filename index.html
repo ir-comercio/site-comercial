@@ -66,8 +66,34 @@
                 </p>
             </div>
             <div class="hero-image">
-                <div class="disjuntor-static">
-                    <img src="DISJUNTOR.png" alt="Disjuntor" class="product-main">
+                <div class="image-carousel-container">
+                    <div class="carousel-nav prev" onclick="changeSlide(-1)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="carousel-slide active" onclick="openCatalog()">
+                        <img src="DISJUNTOR.png" alt="Disjuntor">
+                    </div>
+                    <div class="carousel-slide" onclick="openCatalog()">
+                        <img src="DISJUNTOR 10A.png" alt="Disjuntor 10A">
+                    </div>
+                    <div class="carousel-slide" onclick="openCatalog()">
+                        <img src="REFLETOR 100W.png" alt="Refletor 100W">
+                    </div>
+                    <div class="carousel-slide" onclick="openCatalog()">
+                        <img src="LAMPADA TUBULAR T8 18W.png" alt="Lâmpada Tubular T8 18W">
+                    </div>
+                    <div class="carousel-slide" onclick="openCatalog()">
+                        <img src="TERMINAL ELETRICO.png" alt="Terminal Elétrico">
+                    </div>
+                    
+                    <div class="carousel-nav next" onclick="changeSlide(1)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
@@ -115,17 +141,15 @@
                 </div>
             </div>
 
-            <div class="feature-card" onclick="openAtestadosModal()">
+            <div class="feature-card" onclick="openFeedbackModal()">
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <path d="M9 15l2 2 4-4"/>
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                     </svg>
                 </div>
                 <div class="feature-text">
-                    <h3>Atestados de Capacidade</h3>
-                    <p>Confira nossos atestados técnicos.</p>
+                    <h3>Deixe seu Feedback</h3>
+                    <p>Compartilhe sua experiência conosco.</p>
                 </div>
                 <div class="arrow-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -173,56 +197,46 @@
         </div>
     </div>
 
-    <!-- Modal Atestados -->
-    <div id="atestadosModal" class="modal">
+    <!-- Modal Feedback -->
+    <div id="feedbackModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeAtestadosModal()">&times;</span>
-            <h2>Atestados de Capacidade Técnica</h2>
-            <div class="atestados-content">
-                <p>A I.R. Comércio e Materiais Elétricos LTDA possui ampla experiência no fornecimento de materiais elétricos para diversos segmentos, com atestados de capacidade técnica que comprovam nossa qualificação.</p>
+            <span class="close-modal" onclick="closeFeedbackModal()">&times;</span>
+            <h2>Deixe seu Feedback</h2>
+            <div class="feedback-content">
+                <p>Sua opinião é muito importante para nós! Compartilhe sua experiência com nossos produtos e serviços.</p>
                 
-                <div class="atestados-list">
-                    <div class="atestado-item">
-                        <div class="atestado-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                            </svg>
+                <form id="feedbackForm" class="orcamento-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fb-nome">Nome Completo *</label>
+                            <input type="text" id="fb-nome" required>
                         </div>
-                        <div class="atestado-text">
-                            <h3>Certificações e Normas Técnicas</h3>
-                            <p>Produtos certificados conforme normas ABNT e INMETRO</p>
+                        <div class="form-group">
+                            <label for="fb-email">E-mail *</label>
+                            <input type="email" id="fb-email" required>
                         </div>
-                    </div>
-                    
-                    <div class="atestado-item">
-                        <div class="atestado-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                            </svg>
+                        <div class="form-group">
+                            <label for="fb-empresa">Empresa/Instituição</label>
+                            <input type="text" id="fb-empresa">
                         </div>
-                        <div class="atestado-text">
-                            <h3>Experiência Comprovada</h3>
-                            <p>Mais de 10 anos atendendo o mercado nacional</p>
+                        <div class="form-group">
+                            <label for="fb-rating">Avaliação *</label>
+                            <div class="rating-stars" id="ratingStars">
+                                <span class="star" data-rating="1">★</span>
+                                <span class="star" data-rating="2">★</span>
+                                <span class="star" data-rating="3">★</span>
+                                <span class="star" data-rating="4">★</span>
+                                <span class="star" data-rating="5">★</span>
+                            </div>
+                            <input type="hidden" id="fb-rating" required>
                         </div>
-                    </div>
-                    
-                    <div class="atestado-item">
-                        <div class="atestado-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                            </svg>
-                        </div>
-                        <div class="atestado-text">
-                            <h3>Fornecimento para Órgãos Públicos</h3>
-                            <p>Atestados de fornecimento para prefeituras e órgãos federais</p>
+                        <div class="form-group full-width">
+                            <label for="fb-comentario">Seu Comentário *</label>
+                            <textarea id="fb-comentario" rows="5" placeholder="Conte-nos sobre sua experiência..." required></textarea>
                         </div>
                     </div>
-                </div>
-                
-                <div class="atestados-footer">
-                    <p>Para mais informações sobre nossos atestados de capacidade técnica, entre em contato conosco.</p>
-                    <button class="btn-submit" onclick="closeAtestadosModal(); scrollToContact();">Entrar em Contato</button>
-                </div>
+                    <button type="submit" class="btn-submit">Enviar Feedback</button>
+                </form>
             </div>
         </div>
     </div>
@@ -230,10 +244,10 @@
     <!-- About Section -->
     <section id="sobre" class="about">
         <div class="about-container">
-            <h2 class="section-title">Nossos Parceiros</h2>
+            <h2 class="section-title">Instituições Atendidas</h2>
             <p class="section-description">
-                Trabalhamos com as principais marcas do mercado de materiais elétricos, 
-                garantindo produtos de alta qualidade e tecnologia de ponta para nossos clientes.
+                Mais de 500 instituições públicas e privadas confiam em nossos produtos e serviços. 
+                Atendemos prefeituras, órgãos federais, empresas e indústrias em todo o Brasil.
             </p>
 
             <div class="partners-carousel">
@@ -269,16 +283,6 @@
                         <img src="MEGAACE.png" alt="MEGAACE" class="partner-logo-img">
                     </div>
                 </div>
-            </div>
-
-            <div class="partnership-info">
-                <h3>Parcerias Estratégicas</h3>
-                <p>
-                    Nossas parcerias com fabricantes renomados nos permitem oferecer um portfólio completo 
-                    de produtos, desde iluminação residencial até soluções industriais complexas. Cada parceiro 
-                    é cuidadosamente selecionado para garantir que nossos clientes tenham acesso aos melhores 
-                    produtos do mercado, com certificações e garantias que atendem aos mais rigorosos padrões de qualidade.
-                </p>
             </div>
         </div>
     </section>
