@@ -42,6 +42,65 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Image carousel auto-play
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        if (slides[index]) {
+            slides[index].classList.add('active');
+        }
+    }
+
+    function autoPlayCarousel() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    // Auto-play every 4 seconds
+    setInterval(autoPlayCarousel, 4000);
+
+    // Rating stars functionality
+    const stars = document.querySelectorAll('.rating-stars .star');
+    const ratingInput = document.getElementById('fb-rating');
+    
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = this.getAttribute('data-rating');
+            ratingInput.value = rating;
+            
+            // Update star display
+            stars.forEach(s => {
+                const starRating = parseInt(s.getAttribute('data-rating'));
+                if (starRating <= rating) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        });
+
+        star.addEventListener('mouseenter', function() {
+            const rating = this.getAttribute('data-rating');
+            stars.forEach(s => {
+                const starRating = parseInt(s.getAttribute('data-rating'));
+                if (starRating <= rating) {
+                    s.style.color = '#FFD700';
+                }
+            });
+        });
+
+        star.addEventListener('mouseleave', function() {
+            stars.forEach(s => {
+                if (!s.classList.contains('active')) {
+                    s.style.color = '';
+                }
+            });
+        });
+    });
+
     // Form type toggle
     const toggleButtons = document.querySelectorAll('.toggle-btn');
     const empresaField = document.getElementById('empresaField');
@@ -115,13 +174,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Feedback form submission
+    const feedbackForm = document.getElementById('feedbackForm');
+    
+    if (feedbackForm) {
+        feedbackForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const rating = document.getElementById('fb-rating').value;
+            
+            if (!rating) {
+                alert('Por favor, selecione uma avaliação com estrelas.');
+                return;
+            }
+            
+            // Show success message
+            alert('Obrigado pelo seu feedback! Sua opinião é muito importante para nós.');
+            
+            // Reset form
+            this.reset();
+            
+            // Reset stars
+            stars.forEach(s => s.classList.remove('active'));
+            
+            // Close modal
+            closeFeedbackModal();
+            
+            console.log('Feedback enviado');
+        });
+    }
+
     // Carousel infinite scroll
     const carouselTrack = document.getElementById('carouselTrack');
     
     if (carouselTrack) {
         // Clone slides for infinite scroll
-        const slides = Array.from(carouselTrack.children);
-        slides.forEach(slide => {
+        const productSlides = Array.from(carouselTrack.children);
+        productSlides.forEach(slide => {
             const clone = slide.cloneNode(true);
             carouselTrack.appendChild(clone);
         });
@@ -208,13 +297,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close modals when clicking outside
     window.addEventListener('click', function(e) {
         const orcamentoModal = document.getElementById('orcamentoModal');
-        const atestadosModal = document.getElementById('atestadosModal');
+        const feedbackModal = document.getElementById('feedbackModal');
         
         if (e.target === orcamentoModal) {
             closeOrcamentoModal();
         }
-        if (e.target === atestadosModal) {
-            closeAtestadosModal();
+        if (e.target === feedbackModal) {
+            closeFeedbackModal();
         }
     });
 
@@ -222,10 +311,33 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeOrcamentoModal();
-            closeAtestadosModal();
+            closeFeedbackModal();
         }
     });
 });
+
+// Hero carousel navigation
+function changeSlide(direction) {
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+    
+    slides[currentIndex].classList.remove('active');
+    
+    currentIndex += direction;
+    
+    if (currentIndex >= slides.length) {
+        currentIndex = 0;
+    } else if (currentIndex < 0) {
+        currentIndex = slides.length - 1;
+    }
+    
+    slides[currentIndex].classList.add('active');
+}
+
+// Open catalog function
+function openCatalog() {
+    window.open('IR2 ESTOQUE/IR2-CATALOGO-2026.pdf', '_blank');
+}
 
 // Scroll to contact function
 function scrollToContact() {
@@ -256,16 +368,16 @@ function closeOrcamentoModal() {
     }
 }
 
-function openAtestadosModal() {
-    const modal = document.getElementById('atestadosModal');
+function openFeedbackModal() {
+    const modal = document.getElementById('feedbackModal');
     if (modal) {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 }
 
-function closeAtestadosModal() {
-    const modal = document.getElementById('atestadosModal');
+function closeFeedbackModal() {
+    const modal = document.getElementById('feedbackModal');
     if (modal) {
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
