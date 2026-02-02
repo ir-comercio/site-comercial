@@ -111,18 +111,28 @@ body {
 }
 
 .ir2-text .ir2-i {
-    text-shadow: none;
+    position: relative;
 }
 
 .ir2-text .ir2-r {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
-                 0 0 20px rgba(255, 255, 255, 0.5),
-                 0 0 30px rgba(255, 255, 255, 0.3);
-    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
+    position: relative;
+    display: inline-block;
+}
+
+.ir2-text .ir2-r::before {
+    content: 'R';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    color: rgba(255, 255, 255, 0.4);
+    z-index: -1;
+    background: transparent;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.4);
 }
 
 .ir2-text .ir2-number {
-    text-shadow: none;
+    position: relative;
 }
 
 .company-subtitle {
