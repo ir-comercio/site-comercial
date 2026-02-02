@@ -117,12 +117,15 @@ body {
     background: linear-gradient(90deg, var(--primary), var(--primary-dark), transparent);
 }
 
-.ir2-text .ir2-i,
-.ir2-text .ir2-number {
+.ir2-text .ir2-i {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.ir2-text .ir2-number {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .ir2-text .ir2-r {
