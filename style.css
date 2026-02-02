@@ -1062,13 +1062,11 @@ section.active::before {
 
 /* Scroll Reveal - Fade In Up */
 .scroll-animate {
-    opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .scroll-animate.revealed {
-    opacity: 1;
     transform: translateY(0);
 }
 
@@ -1198,27 +1196,13 @@ section.revealed::before {
     width: 120px;
 }
 
-/* Títulos com efeito de entrada */
+/* Títulos visíveis sempre */
 .section-title {
-    opacity: 0;
-    transform: translateY(20px);
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.section-header.revealed .section-title {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 .section-description {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
-}
-
-.section-header.revealed .section-description {
-    opacity: 1;
-    transform: translateY(0);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Cards em cascata */
