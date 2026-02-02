@@ -498,3 +498,34 @@ document.addEventListener('keydown', function(e) {
 document.addEventListener('mousedown', function() {
     document.body.classList.remove('keyboard-navigation');
 });
+
+// Scroll Reveal Animation System
+(function() {
+    const scrollRevealElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right');
+    
+    const scrollRevealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                
+                // Animar grid items com delay
+                const featuresGrid = entry.target.querySelector('.features-grid');
+                const productsCarousel = entry.target.querySelector('.products-carousel');
+                
+                if (featuresGrid) {
+                    featuresGrid.classList.add('revealed');
+                }
+                if (productsCarousel) {
+                    productsCarousel.classList.add('revealed');
+                }
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '-50px'
+    });
+
+    scrollRevealElements.forEach(el => {
+        scrollRevealObserver.observe(el);
+    });
+})();
