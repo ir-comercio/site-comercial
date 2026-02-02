@@ -1,10 +1,10 @@
 // Smooth scrolling and navigation
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
     
-    if (hamburger) {
+    if (hamburger && navMenu) {
         hamburger.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
@@ -41,26 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    // Image carousel auto-play
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-slide');
-    const totalSlides = slides.length;
-
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        if (slides[index]) {
-            slides[index].classList.add('active');
-        }
-    }
-
-    function autoPlayCarousel() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        showSlide(currentSlide);
-    }
-
-    // Auto-play every 4 seconds
-    setInterval(autoPlayCarousel, 4000);
 
     // Rating stars functionality
     const stars = document.querySelectorAll('.rating-stars .star');
@@ -149,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Reset toggle to "Pessoa Física"
             if (toggleButtons[0]) toggleButtons[0].click();
             
-            // In a real application, you would send this data to a server
             console.log('Form data:', data);
         });
     }
@@ -161,13 +140,9 @@ document.addEventListener('DOMContentLoaded', function() {
         orcamentoForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Show success message
             alert('Solicitação de orçamento enviada com sucesso! Entraremos em contato em breve.');
             
-            // Reset form
             this.reset();
-            
-            // Close modal
             closeOrcamentoModal();
             
             console.log('Orçamento solicitado');
@@ -188,46 +163,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Show success message
             alert('Obrigado pelo seu feedback! Sua opinião é muito importante para nós.');
             
-            // Reset form
             this.reset();
-            
-            // Reset stars
             stars.forEach(s => s.classList.remove('active'));
-            
-            // Close modal
             closeFeedbackModal();
             
             console.log('Feedback enviado');
         });
     }
 
-    // Carousel infinite scroll - Duplica exatamente para loop perfeito
-    const carouselTrack = document.getElementById('carouselTrack');
-    
-    if (carouselTrack) {
-        const productSlides = Array.from(carouselTrack.children);
-        const originalCount = productSlides.length;
-        
-        // Duplica os slides exatamente uma vez para loop perfeito
-        productSlides.forEach(slide => {
-            const clone = slide.cloneNode(true);
-            carouselTrack.appendChild(clone);
-        });
-        
-        console.log(`Clients carousel: ${originalCount} slides duplicated to ${originalCount * 2}`);
-    }
-
-    // Partners carousel infinite scroll - Duplica exatamente para loop perfeito
+    // Partners carousel infinite scroll
     const partnersCarousel = document.getElementById('partnersCarousel');
     
     if (partnersCarousel) {
         const partnerSlides = Array.from(partnersCarousel.children);
         const originalCount = partnerSlides.length;
         
-        // Duplica os slides exatamente uma vez para loop perfeito
         partnerSlides.forEach(slide => {
             const clone = slide.cloneNode(true);
             partnersCarousel.appendChild(clone);
@@ -251,7 +203,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observe feature cards
     document.querySelectorAll('.feature-card, .product-slide, .partner-slide').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -267,10 +218,8 @@ document.addEventListener('DOMContentLoaded', function() {
             let value = e.target.value.replace(/\D/g, '');
             
             if (value.length <= 10) {
-                // Landline: (XX) XXXX-XXXX
                 value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
             } else {
-                // Mobile: (XX) XXXXX-XXXX
                 value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
             }
             
@@ -323,24 +272,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-// Hero carousel navigation
-function changeSlide(direction) {
-    const slides = document.querySelectorAll('.carousel-slide');
-    let currentIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
-    
-    slides[currentIndex].classList.remove('active');
-    
-    currentIndex += direction;
-    
-    if (currentIndex >= slides.length) {
-        currentIndex = 0;
-    } else if (currentIndex < 0) {
-        currentIndex = slides.length - 1;
-    }
-    
-    slides[currentIndex].classList.add('active');
-}
 
 // Open catalog function
 function openCatalog() {
@@ -396,20 +327,12 @@ function closeFeedbackModal() {
 window.addEventListener('load', function() {
     const images = [
         'DISJUNTOR.png',
-        'DISJUNTOR 10A.png',
-        'REFLETOR 100W.png',
-        'LAMPADA TUBULAR T8 18W.png',
-        'TERMINAL ELETRICO.png',
-        'ELGIN.png',
-        'OUROLUX.png',
-        'MAXITELECOM.png',
-        'DECORLUX.png',
-        'LUMANTI.png',
-        'ILUMI.png',
-        'LAMESA.png',
-        'PLUZIE.png',
-        'ENERBRAS.png',
-        'MEGAACE.png'
+        'REFLETOR.png',
+        'PRODUTOS/LAMPADA.png',
+        'PRODUTOS/LAMPADA-TUBULAR.png',
+        'PRODUTOS/REFLETOR.png',
+        'PRODUTOS/RJ45.png',
+        'PRODUTOS/KEYSTONE.png'
     ];
     
     images.forEach(src => {
@@ -433,10 +356,10 @@ const animateOnScroll = () => {
 };
 
 window.addEventListener('scroll', animateOnScroll);
-animateOnScroll(); // Initial check
+animateOnScroll();
 
 // Pause carousels on hover
-const carousel = document.querySelector('.carousel-track');
+const carousel = document.querySelector('.carousel-partners');
 if (carousel) {
     carousel.addEventListener('mouseenter', function() {
         this.style.animationPlayState = 'paused';
@@ -447,21 +370,9 @@ if (carousel) {
     });
 }
 
-const partnersCarousel = document.querySelector('.carousel-partners');
-if (partnersCarousel) {
-    partnersCarousel.addEventListener('mouseenter', function() {
-        this.style.animationPlayState = 'paused';
-    });
-    
-    partnersCarousel.addEventListener('mouseleave', function() {
-        this.style.animationPlayState = 'running';
-    });
-}
-
 // Easter egg: Console message
-console.log('%c⚡ I.R. Comércio e Materiais Elétricos LTDA', 'color: #FF6B35; font-size: 20px; font-weight: bold;');
-console.log('%cSite desenvolvido com excelência e atenção aos detalhes.', 'color: #666666; font-size: 14px;');
-console.log('%cEntre em contato: contato@ircomercio.com.br', 'color: #FF6B35; font-size: 12px;');
+console.log('%c⚡ IR2 Comércio e Materiais Elétricos', 'color: #FF6B35; font-size: 20px; font-weight: bold;');
+console.log('%cSite desenvolvido com excelência e atenção aos detalhes.', 'color: #9CA3AF; font-size: 14px;');
 
 // Performance optimization: Lazy load images
 if ('IntersectionObserver' in window) {
@@ -499,11 +410,8 @@ document.addEventListener('mousedown', function() {
     document.body.classList.remove('keyboard-navigation');
 });
 
-
-// ===== SISTEMA DE ANIMAÇÕES ELEGANTES =====
-
+// Intersection Observer para scroll animations
 (function() {
-    // Intersection Observer para scroll animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
@@ -514,7 +422,6 @@ document.addEventListener('mousedown', function() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
                 
-                // Animar filhos se existirem
                 const children = entry.target.querySelectorAll('.scroll-animate');
                 children.forEach((child, index) => {
                     setTimeout(() => {
@@ -525,17 +432,14 @@ document.addEventListener('mousedown', function() {
         });
     }, observerOptions);
 
-    // Observar todas as seções
     document.querySelectorAll('section').forEach(section => {
         observer.observe(section);
     });
 
-    // Observar section headers
     document.querySelectorAll('.section-header').forEach(header => {
         observer.observe(header);
     });
 
-    // Observar cards
     document.querySelectorAll('.feature-card, .product-slide').forEach(card => {
         observer.observe(card);
     });
@@ -593,17 +497,6 @@ document.addEventListener('mousedown', function() {
         lastScroll = currentScroll;
     });
 
-    // Parallax suave em elementos específicos
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.hero');
-        
-        parallaxElements.forEach(element => {
-            const speed = 0.5;
-            element.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-    });
-
     // Adicionar classe 'revealed' nos elementos visíveis no carregamento
     setTimeout(() => {
         const viewportHeight = window.innerHeight;
@@ -649,20 +542,62 @@ document.head.appendChild(style);
         });
     }
 })();
-// Carrossel automático de produtos no hero
+
+// ===== CARROSSEL DE PRODUTOS NO HERO - CORRIGIDO =====
 (function() {
     const slider = document.getElementById('productsSlider');
-    if (!slider) return;
+    if (!slider) {
+        console.log('Slider não encontrado');
+        return;
+    }
     
     const items = slider.querySelectorAll('.product-item');
+    if (items.length === 0) {
+        console.log('Nenhum item de produto encontrado');
+        return;
+    }
+    
+    console.log(`Carrossel iniciado com ${items.length} produtos`);
+    
     let currentIndex = 0;
     
+    // Garantir que o primeiro item esteja ativo inicialmente
+    items.forEach((item, index) => {
+        item.classList.remove('active');
+    });
+    items[0].classList.add('active');
+    
     function showNextProduct() {
+        // Remover active do item atual
         items[currentIndex].classList.remove('active');
+        
+        // Avançar para o próximo item
         currentIndex = (currentIndex + 1) % items.length;
+        
+        // Adicionar active ao novo item
         items[currentIndex].classList.add('active');
+        
+        const imgSrc = items[currentIndex].querySelector('img')?.getAttribute('src');
+        console.log(`Mostrando produto ${currentIndex + 1} de ${items.length}: ${imgSrc}`);
     }
     
     // Trocar produto a cada 3 segundos
     setInterval(showNextProduct, 3000);
+    console.log('Carrossel automático iniciado (intervalo: 3 segundos)');
 })();
+
+// Toggle form type function
+function toggleFormType(type) {
+    const toggleButtons = document.querySelectorAll('.toggle-btn');
+    const empresaField = document.getElementById('empresaField');
+    
+    toggleButtons.forEach(btn => btn.classList.remove('active'));
+    
+    if (type === 'fisica') {
+        toggleButtons[0].classList.add('active');
+        if (empresaField) empresaField.style.display = 'none';
+    } else {
+        toggleButtons[1].classList.add('active');
+        if (empresaField) empresaField.style.display = 'flex';
+    }
+}
