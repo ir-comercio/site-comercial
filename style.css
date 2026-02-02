@@ -105,6 +105,16 @@ body {
     display: inline-flex;
     letter-spacing: 2px;
     padding-bottom: 4px;
+    animation: subtitleFade 3s ease-in-out infinite;
+}
+
+@keyframes subtitleFade {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 .ir2-text::after {
@@ -152,6 +162,8 @@ body {
     color: var(--gray-400);
     font-weight: 500;
     font-size: 14px;
+    display: inline-block;
+    animation: subtitleFade 3s ease-in-out infinite;
 }
 
 .nav-menu {
