@@ -103,7 +103,7 @@ body {
     font-weight: 900;
     position: relative;
     display: inline-flex;
-    letter-spacing: -1px;
+    letter-spacing: 2px;
     padding-bottom: 4px;
 }
 
@@ -139,9 +139,9 @@ body {
     position: absolute;
     top: 0;
     left: 1.5px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.9);
     z-index: -1;
-    -webkit-text-fill-color: rgba(255, 255, 255, 0.6);
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.9);
     filter: blur(0px);
 }
 
