@@ -637,3 +637,15 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Duplicar slides do carrossel de órgãos
+(function() {
+    const orgaosCarousel = document.getElementById('orgaosCarousel');
+    if (orgaosCarousel) {
+        const slides = Array.from(orgaosCarousel.children);
+        slides.forEach(slide => {
+            const clone = slide.cloneNode(true);
+            orgaosCarousel.appendChild(clone);
+        });
+    }
+})();
