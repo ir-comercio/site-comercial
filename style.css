@@ -1284,3 +1284,43 @@ html {
         background-attachment: scroll;
     }
 }
+
+/* Logo IR2 nos títulos das seções */
+.title-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    letter-spacing: 2px;
+    font-weight: 900;
+    position: relative;
+}
+
+.title-logo .logo-i {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.title-logo .logo-r {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.title-logo .logo-r::after {
+    content: 'R';
+    position: absolute;
+    top: 0;
+    left: 1.5px;
+    color: rgba(255, 255, 255, 0.9);
+    z-index: -1;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.9);
+}
+
+.title-logo .logo-2 {
+    color: rgba(255, 255, 255, 0.9);
+}
