@@ -100,23 +100,27 @@ body {
 }
 
 .ir2-text {
+    font-weight: 900;
+    position: relative;
+    display: inline-flex;
+    letter-spacing: -1px;
+}
+
+.ir2-text .ir2-i,
+.ir2-text .ir2-number {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-weight: 900;
-    position: relative;
-    display: flex;
-    letter-spacing: -1px;
-}
-
-.ir2-text .ir2-i {
-    position: relative;
 }
 
 .ir2-text .ir2-r {
     position: relative;
     display: inline-block;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .ir2-text .ir2-r::before {
@@ -124,15 +128,9 @@ body {
     position: absolute;
     top: 2px;
     left: 2px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.3);
     z-index: -1;
-    background: transparent;
-    -webkit-background-clip: initial;
-    -webkit-text-fill-color: rgba(255, 255, 255, 0.4);
-}
-
-.ir2-text .ir2-number {
-    position: relative;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.3);
 }
 
 .company-subtitle {
