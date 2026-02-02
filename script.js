@@ -649,3 +649,20 @@ document.head.appendChild(style);
         });
     }
 })();
+// Carrossel automático de produtos no hero
+(function() {
+    const slider = document.getElementById('productsSlider');
+    if (!slider) return;
+    
+    const items = slider.querySelectorAll('.product-item');
+    let currentIndex = 0;
+    
+    function showNextProduct() {
+        items[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % items.length;
+        items[currentIndex].classList.add('active');
+    }
+    
+    // Trocar produto a cada 3 segundos
+    setInterval(showNextProduct, 3000);
+})();
