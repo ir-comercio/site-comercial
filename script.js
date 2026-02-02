@@ -204,34 +204,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Carousel infinite scroll
+    // Carousel infinite scroll - Duplica exatamente para loop perfeito
     const carouselTrack = document.getElementById('carouselTrack');
     
     if (carouselTrack) {
-        // Clone slides múltiplas vezes para scroll infinito suave
         const productSlides = Array.from(carouselTrack.children);
-        // Duplica 4 vezes para garantir loop perfeito
-        for (let i = 0; i < 4; i++) {
-            productSlides.forEach(slide => {
-                const clone = slide.cloneNode(true);
-                carouselTrack.appendChild(clone);
-            });
-        }
+        const originalCount = productSlides.length;
+        
+        // Duplica os slides exatamente uma vez para loop perfeito
+        productSlides.forEach(slide => {
+            const clone = slide.cloneNode(true);
+            carouselTrack.appendChild(clone);
+        });
+        
+        console.log(`Clients carousel: ${originalCount} slides duplicated to ${originalCount * 2}`);
     }
 
-    // Partners carousel infinite scroll
+    // Partners carousel infinite scroll - Duplica exatamente para loop perfeito
     const partnersCarousel = document.getElementById('partnersCarousel');
     
     if (partnersCarousel) {
-        // Clone slides múltiplas vezes para scroll infinito suave
         const partnerSlides = Array.from(partnersCarousel.children);
-        // Duplica 4 vezes para garantir loop perfeito
-        for (let i = 0; i < 4; i++) {
-            partnerSlides.forEach(slide => {
-                const clone = slide.cloneNode(true);
-                partnersCarousel.appendChild(clone);
-            });
-        }
+        const originalCount = partnerSlides.length;
+        
+        // Duplica os slides exatamente uma vez para loop perfeito
+        partnerSlides.forEach(slide => {
+            const clone = slide.cloneNode(true);
+            partnersCarousel.appendChild(clone);
+        });
+        
+        console.log(`Partners carousel: ${originalCount} slides duplicated to ${originalCount * 2}`);
     }
 
     // Animate elements on scroll
