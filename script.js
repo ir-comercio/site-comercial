@@ -498,3 +498,142 @@ document.addEventListener('keydown', function(e) {
 document.addEventListener('mousedown', function() {
     document.body.classList.remove('keyboard-navigation');
 });
+
+
+// ===== SISTEMA DE ANIMAÇÕES ELEGANTES =====
+
+(function() {
+    // Intersection Observer para scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                
+                // Animar filhos se existirem
+                const children = entry.target.querySelectorAll('.scroll-animate');
+                children.forEach((child, index) => {
+                    setTimeout(() => {
+                        child.classList.add('revealed');
+                    }, index * 100);
+                });
+            }
+        });
+    }, observerOptions);
+
+    // Observar todas as seções
+    document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+    });
+
+    // Observar section headers
+    document.querySelectorAll('.section-header').forEach(header => {
+        observer.observe(header);
+    });
+
+    // Observar cards
+    document.querySelectorAll('.feature-card, .product-slide').forEach(card => {
+        observer.observe(card);
+    });
+
+    // Efeito de clique nos botões (ripple effect)
+    document.querySelectorAll('.btn-primary, .btn-secondary, .btn-catalog, .btn-submit').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple-effect');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+
+    // Smooth scroll para links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && href !== '') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+
+    // Navbar com background ao rolar
+    const navbar = document.querySelector('.navbar');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+    });
+
+    // Parallax suave em elementos específicos
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.hero');
+        
+        parallaxElements.forEach(element => {
+            const speed = 0.5;
+            element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+    });
+
+    // Adicionar classe 'revealed' nos elementos visíveis no carregamento
+    setTimeout(() => {
+        const viewportHeight = window.innerHeight;
+        document.querySelectorAll('.section-header').forEach(header => {
+            const rect = header.getBoundingClientRect();
+            if (rect.top < viewportHeight) {
+                header.classList.add('revealed');
+            }
+        });
+    }, 100);
+
+})();
+
+// CSS para ripple effect
+const style = document.createElement('style');
+style.textContent = `
+    .ripple-effect {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(0);
+        animation: ripple 0.6s ease-out;
+        pointer-events: none;
+    }
+    
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
