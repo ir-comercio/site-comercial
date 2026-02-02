@@ -272,7 +272,7 @@ body {
 .hero {
     min-height: 90vh;
     padding: 140px 48px 80px;
-    background: linear-gradient(135deg, var(--gray-50) 0%, var(--light) 100%);
+    background: linear-gradient(135deg, #FAFAFA 0%, #FFFFFF 100%);
     display: flex;
     align-items: center;
 }
@@ -350,7 +350,7 @@ body {
     }
 }
 
-/* Products Carousel no Hero */
+/* Products Carousel no Hero - Imagens Soltas */
 .hero-products {
     position: relative;
     height: 500px;
@@ -363,10 +363,7 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
-    overflow: hidden;
-    border-radius: 24px;
-    background: white;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    overflow: visible;
 }
 
 .product-item {
@@ -377,19 +374,29 @@ body {
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
-    padding: 60px;
+    transition: opacity 1.5s ease-in-out;
+    padding: 40px;
 }
 
 .product-item.active {
-    opacity: 1;
+    opacity: 0.85;
 }
 
 .product-item img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.12));
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
 .btn-primary {
@@ -415,7 +422,8 @@ body {
 /* Features Section */
 .features {
     padding: 100px 48px;
-    background: var(--light);
+    background: #F8F9FA;
+    border-top: 1px solid var(--gray-200);
 }
 
 .features-container {
@@ -454,12 +462,12 @@ body {
     border-radius: 16px;
     border: 1px solid var(--gray-200);
     transition: all 0.3s ease;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .feature-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15);
+    box-shadow: 0 12px 32px rgba(255, 107, 53, 0.15);
     border-color: var(--primary);
 }
 
@@ -493,15 +501,24 @@ body {
     line-height: 1.6;
 }
 
-/* Partners Section */
+/* Partners Section - Fundo Escuro */
 .about {
     padding: 100px 48px;
-    background: var(--gray-50);
+    background: #1F2937;
+    position: relative;
 }
 
 .about-container {
     max-width: 1400px;
     margin: 0 auto;
+}
+
+.about .section-title {
+    color: white;
+}
+
+.about .section-description {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .partners-carousel {
@@ -522,21 +539,25 @@ body {
 .partner-slide {
     flex: 0 0 180px;
     height: 100px;
-    background: white;
-    border: 1px solid var(--gray-200);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
 }
 
 .partner-logo-img {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
-    opacity: 0.7;
+    filter: brightness(0) invert(1) opacity(0.7);
+}
+
+.partner-slide:hover .partner-logo-img {
+    filter: brightness(0) invert(1) opacity(1);
 }
 
 @keyframes scrollPartners {
@@ -579,7 +600,8 @@ body {
 /* Company About */
 .company-about {
     padding: 100px 48px;
-    background: var(--light);
+    background: white;
+    border-top: 1px solid var(--gray-200);
 }
 
 .company-container {
@@ -649,7 +671,8 @@ body {
 /* Órgãos Atendidos */
 .orgaos-atendidos {
     padding: 100px 48px;
-    background: var(--gray-50);
+    background: #F8F9FA;
+    border-top: 1px solid var(--gray-200);
 }
 
 .orgaos-container {
@@ -679,14 +702,14 @@ body {
     align-items: center;
     justify-content: center;
     padding: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .orgao-logo-img {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
-    opacity: 0.7;
+    opacity: 0.75;
 }
 
 @keyframes scrollOrgaos {
@@ -697,7 +720,8 @@ body {
 /* Contact Section */
 .contact {
     padding: 100px 48px;
-    background: var(--light);
+    background: white;
+    border-top: 1px solid var(--gray-200);
 }
 
 .contact-container {
